@@ -85,6 +85,24 @@
             on-save="saveSubscriptionFacet(host)">
         </dd>
 
+        <dt translate>Role</dt>
+        <dd bst-edit-text="host.subscription_facet_attributes.role"
+            readonly="denied('edit_hosts', host)"
+            on-save="saveSubscriptionFacet(host)">
+        </dd>
+
+        <dt translate>Usage</dt>
+        <dd bst-edit-text="host.subscription_facet_attributes.usage"
+            readonly="denied('edit_hosts', host)"
+            on-save="saveSubscriptionFacet(host)">
+        </dd>
+
+        <dt translate>Add-ons</dt>
+        <dd bst-edit-text="host.subscription_facet_attributes.addOns"
+            readonly="denied('edit_hosts', host)"
+            on-save="saveSubscriptionFacet(host)">
+        </dd>
+
         <dt translate>Service Level</dt>
         <dd bst-edit-select="host.subscription_facet_attributes.service_level"
             readonly="denied('edit_hosts', host)"

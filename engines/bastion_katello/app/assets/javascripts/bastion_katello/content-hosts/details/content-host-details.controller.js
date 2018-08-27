@@ -51,6 +51,9 @@ angular.module('Bastion.content-hosts').controller('ContentHostDetailsController
             newHost['subscription_facet_attributes'] = {
                 id: host.subscription_facet_attributes.id,
                 autoheal: host.subscription_facet_attributes.autoheal,
+                'role': host.subscription_facet_attributes.role,
+                'usage': host.subscription_facet_attributes.usage,
+                'add_ons': host.subscription_facet_attributes.addOns,
                 'service_level': host.subscription_facet_attributes.service_level,
                 'release_version': host.subscription_facet_attributes.release_version
             };
