@@ -13,6 +13,21 @@ module Katello
             super
           end
         end
+
+        def update
+          role = params.dig('host', 'subscription_facet_attributes', 'role')
+          usage = params.dig('host', 'subscription_facet_attributes', 'usage')
+
+          if role != @host.subscription_facet&.purpose_role&.to_s
+            @host.subscription_facet&.update_role(role)
+          end
+
+          if usage != @host.subscription_facet&.purpose_usage&.to_s
+            @host.subscription_facet&.update_usage(usage)
+          end
+
+          super
+        end
       end
 
       included do

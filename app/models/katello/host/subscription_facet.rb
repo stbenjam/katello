@@ -22,11 +22,8 @@ module Katello
       has_many :subscription_facet_purpose_addons, :class_name => "Katello::SubscriptionFacetPurposeAddon", :dependent => :destroy, :inverse_of => :subscription_facet
       has_many :purpose_addons, :class_name => "Katello::PurposeAddon", :through => :subscription_facet_purpose_addons
 
-      has_one :subscription_facet_purpose_role, :class_name => "Katello::SubscriptionFacetPurposeRole", :dependent => :destroy, :inverse_of => :subscription_facet
-      has_one :purpose_role, :class_name => "Katello::PurposeRole", :through => :subscription_facet_purpose_role
-
-      has_one :subscription_facet_purpose_usage, :class_name => "Katello::SubscriptionFacetPurposeUsage", :dependent => :destroy, :inverse_of => :subscription_facet
-      has_one :purpose_usage, :class_name => "Katello::PurposeUsage", :through => :subscription_facet_purpose_usage
+      belongs_to :purpose_role, :class_name => "Katello::PurposeRole"
+      belongs_to :purpose_usage, :class_name => "Katello::PurposeUsage"
 
       validates :host, :presence => true, :allow_blank => false
 
@@ -71,8 +68,8 @@ module Katello
 
       def update_role(role)
         self.purpose_role = unless role.blank?
-                              Katello::PurposeRole.find_or_create_by(name: role)
-                            end
+                               Katello::PurposeRole.find_or_create_by(name: role)
+                             end
       end
 
       def update_addons(addons)
@@ -280,7 +277,7 @@ module Katello
       end
 
       def backend_update_needed?
-        %w(release_version service_level autoheal).each do |method|
+        %w(release_version service_level autoheal purpose_role_id purpose_usage_id).each do |method|
           return true if self.send("#{method}_changed?")
         end
         if self.host.content_facet

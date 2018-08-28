@@ -9,8 +9,6 @@ module Actions
           sequence do
             host.content_facet.save! if host.content_facet
 
-            require 'pry-remote'; binding.remote_pry
-
             if host.subscription_facet
               consumer_params ||= host.subscription_facet.consumer_attributes
               cp_update = plan_action(::Actions::Candlepin::Consumer::Update, host.subscription_facet.uuid, consumer_params)
