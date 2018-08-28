@@ -142,8 +142,8 @@ module Katello
       def consumer_attributes
         attrs = {
           :autoheal => autoheal,
-          :usage => purpose_usage.name,
-          :role => purpose_role.name,
+          :usage => purpose_usage&.name,
+          :role => purpose_role&.name,
           :addOns => purpose_addons.map(&:name),
           :serviceLevel => service_level,
           :releaseVer => release_version,
