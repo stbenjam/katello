@@ -8,6 +8,10 @@ node :usage do |facet|
   facet.purpose_usage
 end
 
+node :add_ons do |facet|
+  facet.purpose_addons&.map(&:name)
+end
+
 child :user => :user do
   attributes :id, :login
 end

@@ -46,6 +46,10 @@ angular.module('Bastion.content-hosts').controller('ContentHostDetailsController
             return $scope.save(newHost, true);
         };
 
+        $scope.addAddOn = function (host) {
+            $scope.inputValue = "";
+        };
+
         $scope.saveSubscriptionFacet = function (host) {
             var newHost = {id: host.id};
             newHost['subscription_facet_attributes'] = {
@@ -53,7 +57,7 @@ angular.module('Bastion.content-hosts').controller('ContentHostDetailsController
                 autoheal: host.subscription_facet_attributes.autoheal,
                 'role': host.subscription_facet_attributes.role,
                 'usage': host.subscription_facet_attributes.usage,
-                'add_ons': host.subscription_facet_attributes.addOns,
+                'add_ons': host.subscription_facet_attributes.add_ons,
                 'service_level': host.subscription_facet_attributes.service_level,
                 'release_version': host.subscription_facet_attributes.release_version
             };
