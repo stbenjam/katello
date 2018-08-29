@@ -17,6 +17,7 @@ module Katello
         def update
           role = params.dig('host', 'subscription_facet_attributes', 'role')
           usage = params.dig('host', 'subscription_facet_attributes', 'usage')
+          add_ons = params.dig('host', 'subscription_facet_attributes', 'add_ons')
 
           if role != @host.subscription_facet&.purpose_role&.to_s
             @host.subscription_facet&.update_role(role)
@@ -24,6 +25,10 @@ module Katello
 
           if usage != @host.subscription_facet&.purpose_usage&.to_s
             @host.subscription_facet&.update_usage(usage)
+          end
+
+          if add_ons != nil
+            @host.subscription_facet&.update_addons(add_ons)
           end
 
           super

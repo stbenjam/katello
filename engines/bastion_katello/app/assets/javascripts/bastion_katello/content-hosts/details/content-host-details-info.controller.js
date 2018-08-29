@@ -96,6 +96,21 @@ angular.module('Bastion.content-hosts').controller('ContentHostDetailsInfoContro
             $scope.saveSubscriptionFacet($scope.host);
         };
 
+        $scope.clearRole = function () {
+            $scope.host.subscription_facet_attributes['role'] = '';
+            $scope.saveSubscriptionFacet($scope.host);
+        };
+
+        $scope.clearUsage = function () {
+            $scope.host.subscription_facet_attributes['usage'] = '';
+            $scope.saveSubscriptionFacet($scope.host);
+        };
+
+        $scope.clearAddOns = function () {
+            $scope.host.subscription_facet_attributes['add_ons'] = [];
+            $scope.saveSubscriptionFacet($scope.host);
+        };
+
         $scope.clearServiceLevel = function () {
             $scope.host.subscription_facet_attributes['service_level'] = '';
             $scope.saveSubscriptionFacet($scope.host);

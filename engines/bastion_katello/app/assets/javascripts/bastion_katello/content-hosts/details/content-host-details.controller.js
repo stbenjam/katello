@@ -61,6 +61,13 @@ angular.module('Bastion.content-hosts').controller('ContentHostDetailsController
                 'service_level': host.subscription_facet_attributes.service_level,
                 'release_version': host.subscription_facet_attributes.release_version
             };
+
+            if (!Array.isArray(host.subscription_facet_attributes.add_ons)) {
+                newHost['subscription_facet_attributes']['add_ons'] = host.subscription_facet_attributes.add_ons.split(',').map(function(add_on) {
+                    return add_on.trim();
+                });
+            }
+
             return $scope.save(newHost, true);
         };
         // @TODO end hack

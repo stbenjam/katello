@@ -88,18 +88,25 @@
         <dt translate>Role</dt>
         <dd bst-edit-text="host.subscription_facet_attributes.role"
             readonly="denied('edit_hosts', host)"
+            deletable="true"
+            on-delete="clearRole()"
             on-save="saveSubscriptionFacet(host)">
         </dd>
 
         <dt translate>Usage</dt>
         <dd bst-edit-text="host.subscription_facet_attributes.usage"
             readonly="denied('edit_hosts', host)"
+            deletable="true"
+            on-delete="clearUsage()"
             on-save="saveSubscriptionFacet(host)">
         </dd>
 
-        <dt translate>Add-ons</dt>
-        <dd bst-edit-array="host.subscription_facet_attributes.add_ons"
+        <dt translate>Add-Ons</dt>
+        <dd bst-edit-text="host.subscription_facet_attributes.add_ons"
             readonly="denied('edit_hosts', host)"
+            formatter="arrayToString"
+            deletable="true"
+            on-delete="clearAddOns()"
             on-save="saveSubscriptionFacet(host)">
         </dd>
 
