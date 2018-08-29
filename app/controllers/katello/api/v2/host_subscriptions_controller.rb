@@ -19,7 +19,7 @@ module Katello
       param :autoheal, :bool, :desc => N_("Sets whether the Host will autoheal subscriptions upon checkin")
       param :usage, String, :desc => N_("Sets the system purpose usage")
       param :role, String, :desc => N_("Sets the system purpose usage")
-      param :addons, String, :desc => N_("Sets the system add-ons")
+      param :add_ons, String, :desc => N_("Sets the system add-ons")
       param :service_level, Integer, :desc => N_("Service level to be used for autoheal")
       param :hypervisor_guest_uuids, Array, :desc => N_("List of hypervisor guest uuids")
       param :installed_products_attributes, Array, :desc => N_("List of products installed on the host") do
@@ -91,9 +91,10 @@ module Katello
     end
 
     def params_to_rhsm_params
-      rhsm_params = params.slice(:facts, :uuid, :name, :usage, :role, :addons).to_unsafe_h
+      rhsm_params = params.slice(:facts, :uuid, :name, :usage, :role).to_unsafe_h
       rhsm_params[:releaseVer] = params['release_version'] if params['release_version']
 
+      rhsm_params[:addOns] = params['add_ons'] if params['add_ons']
       rhsm_params[:serviceLevel] = params['service_level'] if params['service_level']
       rhsm_params[:guestIds] = params['hypervisor_guest_uuids'] if params[:hypervisor_guest_uuids]
       rhsm_params[:type] = Katello::Candlepin::Consumer::SYSTEM
