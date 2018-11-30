@@ -21,7 +21,6 @@ namespace :katello do
                 repo.update_attributes!(
                   source_repo_checksum_type: repo.pulp_scratchpad_checksum_type)
               end
-            # rubocop:disable HandleExceptions
             rescue RestClient::ResourceNotFound
             end
           end
